@@ -10,23 +10,41 @@
 <%@ page import ="java.sql.*" %>
 <%@ page import ="javax.sql.*" %>
 <%
-String user=request.getParameter("userid"); 
-session.putValue("userid",user); 
-String pwd=request.getParameter("pwd"); 
+String user=request.getParameter("username"); 
+HttpSession sess = request.getSession(); 
+sess.setAttribute("username", user);
 String fname=request.getParameter("fname"); 
 String lname=request.getParameter("lname"); 
 String email=request.getParameter("email"); 
+String pwd=request.getParameter("pwd"); 
+String gen=request.getParameter("gender"); 
+String dob=request.getParameter("dob"); 
+
 Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/record","#","#");
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/record","root","tayba");
 Statement st= con.createStatement(); 
 ResultSet rs; 
-int i=st.executeUpdate("insert into users values ('"+user+"','"+pwd+"','"+fname+"',	'"+lname+"','"+email+"')"); 
+
+String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+Boolean b = email.matches(EMAIL_REGEX);
+if(b==true){
+	out.println("Incorrect email format");
+	response.sendRedirect("index.html#signup");
+}
+else{
+	try{
+int i=st.executeUpdate("insert into userdetail values ('"+fname+"','"+lname+"','"+email+"',	'"+user+"','"+pwd+"','"+gen+"','"+dob+"')"); 
 
 out.println("Registered"); 
 
-
+}
+catch(SQLException e){
+	response.sendRedirect("index.html#signup");
+	out.println(e);
+}
+}
 %>
-<a href ="Login.html">Login</a><br/><br/>
-<a href="index.html">Home</a>
+
+<a href="index.html#login">Home</a>
 </body>
 </html>

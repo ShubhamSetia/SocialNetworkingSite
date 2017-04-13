@@ -10,18 +10,30 @@
 	<%@ page import="java.sql.*"%>
 	<%@ page import="javax.sql.*"%>
 	<%
-String userid=request.getParameter("usr"); 
-session.putValue("userid",userid); 
+String username=request.getParameter("usr"); 
+HttpSession sess = request.getSession(); 
+sess.setAttribute("username", username);
 String pwd=request.getParameter("pwd"); 
 Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/record","#","#"); 
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/record","root","tayba"); 
 Statement st= con.createStatement(); 
-ResultSet rs=st.executeQuery("select * from users where userid='"+userid+"'"); 
-if(rs.next()) 
+ResultSet rs=st.executeQuery("select * from userdetail where username='"+username+"'"); 
+
+if(!rs.next()){
+	
+	
+	response.sendRedirect("index.html#signup");
+	{%>
+	<script>alert("Register yourself");</script>
+	
+	<%}
+}
+else{
 { 
-if(rs.getString(2).equals(pwd)) 
+if(rs.getString(5).equals(pwd)) 
 { 
-out.println("welcome"+userid); 
+out.println("welcome"+username);
+response.sendRedirect("userprofile.jsp");
 {%>
 <a href="logout.jsp"><b>Logout</b></a>
 <%}
@@ -30,11 +42,12 @@ else
 { 
 out.println("Invalid password try again"); 
 {%>
-<a href="index.html"><b>Home</b></a>
+<a href="index.html#login"><b>Home</b></a>
 <%}
 } 
 } 
-else 
+ 
+}
 %>
 
 </body>
