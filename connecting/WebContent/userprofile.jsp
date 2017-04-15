@@ -1,49 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="control.Dbconnect" %>    
+<%@page import="java1.User" %>
+    
 <!DOCTYPE html>
-<html >
+<html>
 <head>
   <meta charset="UTF-8">
   <title>User Profile</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/style1.css">
-
-  
+  <link rel="stylesheet" href="css/style1.css">
 </head>
 
 <body>
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%
-HttpSession sess = request.getSession(false); //use false to use the existing session
-sess.getAttribute("username");
-Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/record","root","tayba"); 
-Statement st= con.createStatement(); 
-ResultSet rs=st.executeQuery("select * from userdetail where username='"+sess.getAttribute("username")+"'"); 
-/*if(rs.next()){
-out.println(rs.getString(1));
-out.println(rs.getString(2));
-out.println(rs.getString(3));
-out.println(rs.getString(4));
-//out.println(rs.getString(5));
-out.println(rs.getString(6));
-out.println(rs.getString(7));
-}*/
+	HttpSession sess = request.getSession(false);//use false to use the existing session
+	
 %>
+ <a href="#"><button type="button">view post</button></a> 
+  <a href="friendsDisplay.jsp"><button type="button">View friends</button> </a>
+  <a href="#"><button type="button">Send messages</button></a>
+  <a href="messagedisplay.jsp"><button type="button">view messages</button></a> 
+  <a href="logout.jsp"><button type="button">Logout</button> </a>
+ <a href="#"><button type="button">Delete User</button></a> 
 <div class="ACon">
 <div class="Profile">
 <div class="Img">
-    <div class="overlay">
+<div class="overlay">
       <span><img /></span>
-    </div>
+</div>
 </div>
 <div class="PopUp">Open Profile</div>
 <div class="clickPopUp">
 <h4><%=sess.getAttribute("username") %></h4>
-<h4><%=sess.getAttribute("gen") %></h4>
+<h4><%=sess.getAttribute("gender") %></h4>
 <h4><%=sess.getAttribute("dob") %></h4>
 </div>
 </div>

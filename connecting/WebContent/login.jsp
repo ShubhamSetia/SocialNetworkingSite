@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="control.Dbconnect" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,46 +8,42 @@
 <title>Login</title>
 </head>
 <body>
-	<%@ page import="java.sql.*"%>
-	<%@ page import="javax.sql.*"%>
-	<%
-String username=request.getParameter("usr"); 
-HttpSession sess = request.getSession(); 
-sess.setAttribute("username", username);
-String pwd=request.getParameter("pwd"); 
-Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/record","root","tayba"); 
-Statement st= con.createStatement(); 
-ResultSet rs=st.executeQuery("select * from userdetail where username='"+username+"'"); 
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%
+	String username=request.getParameter("usr"); 
+	String pwd=request.getParameter("pwd"); 
+	HttpSession sess = request.getSession(); 
+	sess.setAttribute("username", username);
+	
+	Dbconnect db = new Dbconnect();
 
-if(!rs.next()){
+	db.rs=db.st.executeQuery("select * from userdetail where username='"+username+"'"); 
 	
-	
-	response.sendRedirect("index.html#signup");
-	{%>
-	<script>alert("Register yourself");</script>
-	
-	<%}
-}
-else{
-{ 
-if(rs.getString(5).equals(pwd)) 
-{ 
-out.println("welcome"+username);
-response.sendRedirect("userprofile.jsp");
-{%>
-<a href="logout.jsp"><b>Logout</b></a>
-<%}
-} 
-else 
-{ 
-out.println("Invalid password try again"); 
-{%>
-<a href="index.html#login"><b>Home</b></a>
-<%}
-} 
-} 
- 
+	if(!db.rs.next()){
+		response.sendRedirect("index.html#signup");
+		{%>
+			<script>alert("Register yourself");</script>
+		<%}
+	}
+	else{
+		
+		if(db.rs.getString(5).equals(pwd)) 
+		{ 
+			out.println("welcome"+username);
+			sess.setAttribute("gender", db.rs.getString("gender"));
+			sess.setAttribute("dob", db.rs.getString("dob"));
+			response.sendRedirect("userprofile.jsp");
+			//response.sendRedirect("friendsDisplay.jsp");
+			//response.sendRedirect("messagedisplay.jsp");
+		} 
+		else 
+		{ 
+			out.println("Invalid password try again"); 
+			{%>
+				<a href="index.html#login"><b>Home</b></a>
+			<%}
+		} 
 }
 %>
 
