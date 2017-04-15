@@ -2,4 +2,4 @@
 
 <%session.invalidate();%>
 You have logged out. 
-<a href="index.html"><b>Login</b></a>
+<% response.sendRedirect("index.html");%>
