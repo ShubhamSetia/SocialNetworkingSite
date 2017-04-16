@@ -14,8 +14,16 @@
 String email=request.getParameter("email"); 
 String password=request.getParameter("password");
 Dbconnect db = new Dbconnect();
+HttpSession sess = request.getSession(false);
+String sid = (String)sess.getAttribute("username");
 try{
-	int i=db.st.executeUpdate("delete from userdetail where email="+email+" and password="+password);
+
+
+	int i=db.st.executeUpdate("delete from userdetail where username='"+sid+"'and email='"+email+"'and password='"+password+"'");
+	if(i>0){out.println("You are no longer a user");}
+	else {
+		out.println("You are trying to delete another user");
+	}
 }
 catch(Exception e){
 	out.println(e);

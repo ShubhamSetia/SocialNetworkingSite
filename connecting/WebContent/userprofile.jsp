@@ -20,10 +20,10 @@
 %>
  <a href="#"><button type="button">view post</button></a> 
   <a href="friendsDisplay.jsp"><button type="button">View friends</button> </a>
-  <a href="#"><button type="button">Send messages</button></a>
+  <a href="message.html"><button type="button">Send messages</button></a>
   <a href="messagedisplay.jsp"><button type="button">view messages</button></a> 
   <a href="logout.jsp"><button type="button">Logout</button> </a>
- <a href="#"><button type="button">Delete User</button></a> 
+ <a href="deleteuser.html"><button type="button">Delete User</button></a> 
 <div class="ACon">
 <div class="Profile">
 <div class="Img">
@@ -40,7 +40,7 @@
 </div>
 </div>
 </body>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='js/jquery.min.js'></script>
 
     <script src="js/index1.js"></script>
 
