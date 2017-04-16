@@ -6,6 +6,7 @@ public class Dbconnect {
 	public Statement st;
 	public ResultSet rs;
 	
+	
 	public Dbconnect(){
 	try{
 		Class.forName("com.mysql.jdbc.Driver"); 
