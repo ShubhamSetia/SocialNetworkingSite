@@ -98,6 +98,7 @@ db.rs=db.st.executeQuery("select friend_id from friends where user_id='"+sess.ge
 			<!--end-wrapper-demo-->
 			
 			<!--end-body-->
+			  <a href="userprofile.jsp"><button style="position: absolute; left : 5%; top: 8%">User Profile</button></a></li>
 	</body>
 </html>
 

@@ -33,7 +33,10 @@ try{
 	}
 	catch(Exception e){
 		out.println(e);
+   
+	response.sendRedirect("index.html#signup");
 	}
+
 
 
 %>

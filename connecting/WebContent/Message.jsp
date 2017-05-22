@@ -9,11 +9,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Messages</title>
-  <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+  <script src="js/modernizr.js" type="text/javascript"></script>
 
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/style5.css">
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Playball'>
 
       <style>
@@ -46,7 +46,7 @@ h2 {
 }
 
 main {
-  background: #333;
+  background:  #309b89;
   width: 100%;
   padding: 30px;
   text-align: center;
@@ -65,7 +65,7 @@ main a:hover {
 /* Dropdown style */
 .dropdown {
   width: 15em;
-  margin: 40px 0px 0px 20px;
+  margin: 200px 150px 0px 815px;
 }
 .dropdown dt a {
   display: block;
@@ -93,7 +93,7 @@ main a:hover {
   display: none;
   position: absolute;
   left: 0;
-  top: -2.5em;
+  top: -2em;
   width: 100%;
   list-style: none;
   background: #fff none repeat scroll 0 0;
@@ -125,19 +125,20 @@ main a:hover {
 
     </style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <script src="js/prefixfree.min.js"></script>
 
 </head>
 
-<body>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-color:#E0FFFF">
+  
 <h1>Inbox</h1>
 
 <main>
-  <p><a href="http://codepen.io/Tombek/pen/OPvpLe" target="_blank">Stay connected ...</a></p>
+  <p style="color:white"><b>Stay connected ...</b></p>
 </main>
+
 <div class="w3-container">
- <div id="send" style="margin:auto;align:center;position:absolute;top:50%;left:35%">
+ <div id="send" style="margin:auto;align:center;position:absolute;top:35%;left:45%">
   <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large"style="align:center; padding: 15px 32px; margin:auto">Send Message</button>
 </div>
   <div id="id01" class="w3-modal">
@@ -185,7 +186,7 @@ d1.rs = d1.st.executeQuery("select * from msg where receiver='"+sid+"'");
 			<ul>
 				<li><a class="default">Sent Messages</a></li>
 				<%while(db.rs.next()){ %>
-				<li><a>You messaged <%=db.rs.getString(2) %>: <%=db.rs.getString(3) %></h2></a></li>
+				<li><a>You messaged <%=db.rs.getString(2) %>: <%=db.rs.getString(3) %></a></li>
 			<%} %>
 				
 			</ul>
@@ -193,19 +194,20 @@ d1.rs = d1.st.executeQuery("select * from msg where receiver='"+sid+"'");
 </dl>
 
 <dl class="dropdown">
-	<dt><a><span>Recieved Messages</span></a></dt>
+	<dt><a><span>Received Messages</span></a></dt>
 		<dd>
 			<ul>
-				<li><a class="default">Recieved Messages</a></li>
+				<li><a class="default">Received Messages</a></li>
 				<%while(d1.rs.next()){ %>
-				<li><a><%=d1.rs.getString(1) %> messaged you: <%=d1.rs.getString(3) %></a></li>
+				<li><a><%=d1.rs.getString(1) %> messaged you: <%=d1.rs.getString(3) %></a>
 			<%} %>
 			</ul>
 		</dd>
 </dl>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='js/jquery.min.js'></script>
 
     <script src="js/index2.js"></script>
+    <a href="userprofile.jsp"><button style="position: absolute; left :0%; top:2%">User Profile</button></a>
 
 </body>
 </html>

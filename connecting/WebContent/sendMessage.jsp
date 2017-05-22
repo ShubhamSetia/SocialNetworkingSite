@@ -18,9 +18,11 @@ String receiver =request.getParameter("rcv");
 String message = request.getParameter("msg");
 message m = new message();
 m.sendMessage(sid,receiver,message);
-out.println("message successfully sent!");
-%>
 
+
+%>
+<a href="Message.jsp"><button>Message Successfully sent ! Go back to inbox</button> </a> 
 
 </body>
 </html>
+
