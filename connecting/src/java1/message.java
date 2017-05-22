@@ -1,5 +1,4 @@
 package java1;
-import java.sql.*;
 import control.Dbconnect;
 
 public class message 
@@ -61,12 +60,12 @@ public class message
     {
         this.message = message;
     }
-    //methdo to send a message.
+    //method to send a message.
     public void sendMessage(String sid,String rid, String mesg)
     {
     	try{
     			Dbconnect d = new Dbconnect();
-    			int i=d.st.executeUpdate("insert into msg values ('"+sid+"','"+rid+"','"+mesg+"')"); 
+    			int i = d.st.executeUpdate("insert into msg values ('"+sid+"','"+rid+"','"+mesg+"')"); 
     		}
     	catch(Exception e){
     			System.out.println(e);
@@ -75,33 +74,5 @@ public class message
     
     }
     
-    public void receiveMessage(String sid){
-    	
-    try{
-    	  
-    	Dbconnect d = new Dbconnect();
-    	d.rs=d.st.executeQuery("select * from msg where sender='"+SID+"'"); 
-    	
-    }	
-    catch(Exception e){
-  	  System.out.println(e);
-    }
-    
-    }
-    
-    public void sentMessage(String sid){
-      	
-        try{
-        	  
-        	Dbconnect d = new Dbconnect();
-        	d.rs=d.st.executeQuery("select * from msg where receiver='"+SID+"'"); 
-        	while(d.rs.next()){
-      		  	System.out.println(d.rs.getString(1)+" messages "+d.rs.getString(2)+" that "+d.rs.getString(3));
-        	}
-        }	
-        catch(Exception e){
-      	  System.out.println(e);
-        }
-        }
 }
 
